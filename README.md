@@ -39,6 +39,7 @@ docker-compose up --build
 ```
 
 A API estará disponível em: `http://localhost:8080/swagger`
+para teste acesse: `http://3.84.227.229:8080/swagger/index.html`
 
 ### 💻 Execução Local
 
