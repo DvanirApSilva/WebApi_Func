@@ -11,41 +11,14 @@ services:
       - "8080:8080"
     environment:
       - ASPNETCORE_HTTP_PORTS=8080
-      - DB_HOST=database
-      - DB_NAME=webapi_func_db
+      - DB_HOST=webrds.cengsmwc6d3c.us-east-1.rds.amazonaws.com
+      - DB_NAME=postgres
       - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_PORT=5432
-    depends_on:
-      database:
-        condition: service_healthy
+      - DB_PASSWORD=33557788
+      - DB_PORT=15432
     networks:
       - webapi_network
     restart: on-failure
-
-  database:
-    image: postgres:16
-    container_name: postgres_db
-    restart: always
-    environment:
-      POSTGRES_DB: webapi_func_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    ports:
-      - "15432:5432"
-    networks:
-      - webapi_network
-
-volumes:
-  postgres_data:
-
 
 networks:
   webapi_network:
